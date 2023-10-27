@@ -18,9 +18,13 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_MESSAGE_USER"))
     private User user;
 
     private LocalDateTime messageTime;
+
+    private String messageBot;
+
+    private String messageUser;
 }

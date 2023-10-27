@@ -22,19 +22,19 @@ public class UserService {
         var telegramUser = update.getMessage().getFrom();
         var appUserOpt = userRepository.findByTelegramUserId(telegramUser.getId());
         if (appUserOpt.isEmpty()) {
-            User transientAppUser = User.builder()
+            User transientUser = User.builder()
                     .telegramUserId(telegramUser.getId())
                     .username(telegramUser.getUserName())
                     .lastMessageAt(LocalDateTime.now())
                     .build();
-            return userRepository.save(transientAppUser);
+            return userRepository.save(transientUser);
         }
         return appUserOpt.get();
     }
 
-    public void updateLastMessageAt(Long id, LocalDateTime time) {
+    public void updateLastMessageAt(Long id) {
         User user = userRepository.findUserByTelegramUserId(id);
-        user.setLastMessageAt(time);
+        user.setLastMessageAt(LocalDateTime.now());
         userRepository.save(user);
     }
 }

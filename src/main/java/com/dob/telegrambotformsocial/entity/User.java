@@ -28,7 +28,7 @@ public class User {
 
     private LocalDateTime lastMessageAt;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE})
     private Set<Message> messages;
 
 }

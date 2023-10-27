@@ -11,10 +11,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "daily_domains")
+@ToString
 public class DailyDomains {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String domainName;
+
+    private int price;
 }
