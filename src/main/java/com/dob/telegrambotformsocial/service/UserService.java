@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -18,7 +19,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User findOrSaveAppUser(Update update) {
+
+    public User findOrSaveUser(Update update) {
         var telegramUser = update.getMessage().getFrom();
         var appUserOpt = userRepository.findByTelegramUserId(telegramUser.getId());
         if (appUserOpt.isEmpty()) {
@@ -36,5 +38,8 @@ public class UserService {
         User user = userRepository.findUserByTelegramUserId(id);
         user.setLastMessageAt(LocalDateTime.now());
         userRepository.save(user);
+    }
+    public List<Long> telegramUsersIds(){
+        return userRepository.findAllTelegramUserIds();
     }
 }

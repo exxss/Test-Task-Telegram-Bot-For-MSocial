@@ -3,6 +3,7 @@ package com.dob.telegrambotformsocial.service;
 import com.dob.telegrambotformsocial.entity.DailyDomains;
 import com.dob.telegrambotformsocial.repository.DailyDomainsRepository;
 import com.dob.telegrambotformsocial.utils.JsonParser;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

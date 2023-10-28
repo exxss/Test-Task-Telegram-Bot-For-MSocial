@@ -21,6 +21,7 @@ public class User {
     private Long id;
 
     private Long telegramUserId;
+
     @CreationTimestamp
     private LocalDateTime firstLoginDate;
 
