@@ -19,7 +19,7 @@ public class DailyDomainsService {
         this.jsonParser = jsonParser;
     }
 
-    public void create(){
+    public void saveDomains(){
     List<String> domainnames = jsonParser.parseJsonArrayToObject(
                "https://backorder.ru/json/?order=desc&expired=1&by=hotness&page=1&items=50", "domainname");
     List<String> prices = jsonParser.parseJsonArrayToObject(
@@ -38,7 +38,7 @@ public class DailyDomainsService {
       return dailyDomainsRepository.countAllByDomainName();
     }
 
-    public void deleteAllRows(){
+    public void deleteDomains(){
         dailyDomainsRepository.deleteAll();
     }
 

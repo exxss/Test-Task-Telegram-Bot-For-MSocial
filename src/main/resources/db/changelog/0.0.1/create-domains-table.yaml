@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-domains
+      author: Nikita
+      changes:
+        - createTable:
+            tableName: daily_domains
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: domain_name
+                  type: varchar(255)
+              - column:
+                  name: price
+                  type: integer
+
+

@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-messages
+      author: Nikita
+      changes:
+        - createTable:
+            tableName: messages
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: message_time
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: FK_MESSAGE_USER
+                    referencedTableName: users
+                    referencedColumnNames: id
+              - column:
+                  name: message_bot
+                  type: varchar(255)
+              - column:
+                  name: message_user
+                  type: varchar(255)

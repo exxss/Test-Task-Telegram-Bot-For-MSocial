@@ -19,7 +19,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-
     public User findOrSaveUser(Update update) {
         var telegramUser = update.getMessage().getFrom();
         var appUserOpt = userRepository.findByTelegramUserId(telegramUser.getId());
@@ -39,6 +38,7 @@ public class UserService {
         user.setLastMessageAt(LocalDateTime.now());
         userRepository.save(user);
     }
+
     public List<Long> telegramUsersIds(){
         return userRepository.findAllTelegramUserIds();
     }

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users
+      author: Nikita
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_login_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_message_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: telegram_user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+

@@ -5,7 +5,7 @@ import com.dob.telegrambotformsocial.service.DailyDomainsService;
 import com.dob.telegrambotformsocial.service.MessageService;
 import com.dob.telegrambotformsocial.service.UserService;
 import lombok.Getter;
-import lombok.NonNull;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -21,6 +21,7 @@ import java.util.Locale;
 
 @Getter
 @Component
+@Log4j2
 public class MSocialBot extends TelegramLongPollingBot {
 
     private final UserService userService;
@@ -29,6 +30,8 @@ public class MSocialBot extends TelegramLongPollingBot {
 
     @Value("${bot.name}")
     private String username;
+
+
 
     public MSocialBot(@Value("${bot.token}") String token, UserService userService, MessageService messageService, DailyDomainsService dailyDomainsService) {
         super(token);
@@ -40,24 +43,17 @@ public class MSocialBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         var user = userService.findOrSaveUser(update);
-        String text = update.getMessage().getText();
         SendMessage message = new SendMessage();
         if (update.hasMessage() && update.getMessage().hasText()) {
             message.setChatId(update.getMessage().getChatId().toString());
-            message.setText("h");
+            message.setText("Ваше сообщение: " + update.getMessage().getText());
         }
-        if (text.equals("/cr")) {
-            dailyDomainsService.deleteAllRows();
-            dailyDomainsService.create();
-            message.setChatId(update.getMessage().getChatId().toString());
-            message.setText("Записи показаны в консоле");
-
-        }
+        //todo обработка фото гс и видео
+        //todo проверка всех функций
         userService.updateLastMessageAt(user.getTelegramUserId());
         messageService.saveMessage(message.getText(),update.getMessage().getText(),user.getTelegramUserId());
         executeMessage(message);
     }
-
     @Override
     public String getBotUsername() {
         return username;
@@ -67,25 +63,39 @@ public class MSocialBot extends TelegramLongPollingBot {
         message.setChatId(String.valueOf(chatId));
         message.setText(textToSend);
         executeMessage(message);
+
+    }
+    @Scheduled(cron = "1 0 8 * * ?")
+    private void deleteDomains(){
+        System.out.println("delete");
+        dailyDomainsService.deleteDomains();
     }
 
-    @Scheduled(cron = "0 0 8 1/1 * ? *")
-    private void sendAds(){
+    @Scheduled(cron = "2 0 8 * * ?")
+    private void saveDomains(){
+        System.out.println("save");
+        dailyDomainsService.saveDomains();
+    }
+    @Scheduled(cron = "3 0 8 * * ?")
+    private void sendCountDomains(){
+        String message = date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.";
+        System.out.println("send");
         List<Long> userIds = userService.telegramUsersIds();
         for (Long userId : userIds) {
-          prepareAndSendMessage(userId,date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.");
+          prepareAndSendMessage(userId,message);
+          messageService.saveMessage(message,"",userId);
         }
     }
     private void executeMessage(SendMessage message){
         try {
             execute(message);
         } catch (TelegramApiException e) {
-//            log.error(ERROR_TEXT + e.getMessage());
+            log.error(e.getMessage());
         }
     }
     private String date(){
         LocalDateTime ldt = LocalDateTime.now().plusDays(1);
-        DateTimeFormatter formmat1 = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
-        return formmat1.format(ldt);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        return format.format(ldt);
     }
 }
