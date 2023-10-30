@@ -18,6 +18,4 @@ public class DailyDomains {
     private Long id;
 
     private String domainName;
-
-    private int price;
 }

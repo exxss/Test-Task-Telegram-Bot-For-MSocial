@@ -17,6 +17,7 @@ import java.util.List;
 @Component
 @Log4j2
 public class JsonParser {
+
     public static String getJSONFromURL(String strUrl) {
         StringBuilder jsonText = new StringBuilder();
         try {
@@ -44,13 +45,12 @@ public class JsonParser {
             JSONArray a = (JSONArray) parser.parse(strJson);
             for (Object o:a
                  ) {
-                JSONObject jsonObject = (JSONObject) o;
+                var jsonObject = (JSONObject) o;
                 var jsonKey = jsonObject.get(key);
                 list.add(String.valueOf(jsonKey));
             }
         }
         catch(Exception e) {
-            //todo logger
             log.error(e.getMessage());
         }
         return list;

@@ -16,8 +16,5 @@ databaseChangeLog:
               - column:
                   name: domain_name
                   type: varchar(255)
-              - column:
-                  name: price
-                  type: integer
 
 

@@ -22,7 +22,7 @@ import java.util.Locale;
 @Getter
 @Component
 @Log4j2
-public class MSocialBot extends TelegramLongPollingBot {
+public class MSBot extends TelegramLongPollingBot {
 
     private final UserService userService;
     private final MessageService messageService;
@@ -33,7 +33,7 @@ public class MSocialBot extends TelegramLongPollingBot {
 
 
 
-    public MSocialBot(@Value("${bot.token}") String token, UserService userService, MessageService messageService, DailyDomainsService dailyDomainsService) {
+    public MSBot(@Value("${bot.token}") String token, UserService userService, MessageService messageService, DailyDomainsService dailyDomainsService) {
         super(token);
         this.userService = userService;
         this.messageService = messageService;
@@ -47,11 +47,14 @@ public class MSocialBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             message.setChatId(update.getMessage().getChatId().toString());
             message.setText("Ваше сообщение: " + update.getMessage().getText());
+            messageService.saveMessage(message.getText(),update.getMessage().getText(),user.getTelegramUserId());
         }
-        //todo обработка фото гс и видео
-        //todo проверка всех функций
+        if (update.hasMessage() && !update.getMessage().hasText()) {
+            message.setChatId(update.getMessage().getChatId().toString());
+            message.setText("Ваше сообщение не понятно для меня");
+            messageService.saveMessage(message.getText(),"undefined type",user.getTelegramUserId());
+        }
         userService.updateLastMessageAt(user.getTelegramUserId());
-        messageService.saveMessage(message.getText(),update.getMessage().getText(),user.getTelegramUserId());
         executeMessage(message);
     }
     @Override
@@ -93,6 +96,7 @@ public class MSocialBot extends TelegramLongPollingBot {
             log.error(e.getMessage());
         }
     }
+
     private String date(){
         LocalDateTime ldt = LocalDateTime.now().plusDays(1);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
