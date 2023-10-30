@@ -30,7 +30,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: username
-                  type: varchar(255)
+                  type: varchar(32)
                   constraints:
                     nullable: false
 

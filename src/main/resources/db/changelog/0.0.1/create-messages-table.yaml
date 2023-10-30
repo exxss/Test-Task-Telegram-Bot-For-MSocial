@@ -27,7 +27,7 @@ databaseChangeLog:
                     referencedColumnNames: id
               - column:
                   name: message_bot
-                  type: varchar(255)
+                  type: varchar(4096)
               - column:
                   name: message_user
-                  type: varchar(255)
+                  type: varchar(4096)
