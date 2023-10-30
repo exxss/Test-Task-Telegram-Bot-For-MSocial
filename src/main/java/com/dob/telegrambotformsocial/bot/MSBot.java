@@ -70,19 +70,16 @@ public class MSBot extends TelegramLongPollingBot {
     }
     @Scheduled(cron = "1 0 8 * * ?")
     private void deleteDomains(){
-        System.out.println("delete");
         dailyDomainsService.deleteDomains();
     }
 
     @Scheduled(cron = "2 0 8 * * ?")
     private void saveDomains(){
-        System.out.println("save");
         dailyDomainsService.saveDomains();
     }
     @Scheduled(cron = "3 0 8 * * ?")
     private void sendCountDomains(){
         String message = date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.";
-        System.out.println("send");
         List<Long> userIds = userService.telegramUsersIds();
         for (Long userId : userIds) {
           prepareAndSendMessage(userId,message);
