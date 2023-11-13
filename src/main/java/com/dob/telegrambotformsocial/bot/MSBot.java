@@ -84,7 +84,28 @@ public class MSBot extends TelegramLongPollingBot {
         executeMessage(message);
 
     }
+<<<<<<< HEAD
 
+=======
+    @Scheduled(cron = "1 0 8 * * ?")
+    private void deleteDomains(){
+        dailyDomainsService.deleteDomains();
+    }
+
+    @Scheduled(cron = "2 0 8 * * ?")
+    private void saveDomains(){
+        dailyDomainsService.saveDomains();
+    }
+    @Scheduled(cron = "3 0 8 * * ?")
+    private void sendCountDomains(){
+        String message = date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.";
+        List<Long> userIds = userService.telegramUsersIds();
+        for (Long userId : userIds) {
+          prepareAndSendMessage(userId,message);
+          messageService.saveMessage(message,"",userId);
+        }
+    }
+>>>>>>> 3854d4eef7a1abe64f0a7ee2982049988f350f63
     private void executeMessage(SendMessage message){
         try {
             execute(message);

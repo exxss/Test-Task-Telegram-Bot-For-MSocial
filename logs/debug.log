@@ -1,0 +1,292 @@
+2023-10-30 17:14:33 - Starting TelegramBotForMSocialApplication using Java 21 on DESKTOP-UISI2UT with PID 9248 (C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes started by eddie in C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial)
+2023-10-30 17:14:33 - Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-10-30 17:14:33 - No active profile set, falling back to 1 default profile: "default"
+2023-10-30 17:14:33 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-30 17:14:34 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-30 17:14:34 - Finished Spring Data repository scanning in 62 ms. Found 3 JPA repository interfaces.
+2023-10-30 17:14:34 - HikariPool-1 - Starting...
+2023-10-30 17:14:34 - HikariPool-1 - Start completed.
+2023-10-30 17:14:35 - Set default schema name to public
+2023-10-30 17:14:35 - Failed to perform a method call for SnakeYaml because the version of SnakeYaml being used is too old. Consider upgrading to a SnakeYaml version equal to or newer than 1.32, by downloading and installing a newer version of Liquibase (which includes a newer version of SnakeYaml). Loading particularly large JSON and YAML documents (like snapshots) in Liquibase may fail if SnakeYaml is not upgraded.
+2023-10-30 17:14:35 - Reading from public.databasechangelog
+2023-10-30 17:14:35 - Reading from public.databasechangelog
+2023-10-30 17:14:35 - UPDATE SUMMARY
+2023-10-30 17:14:35 - Run:                          0
+2023-10-30 17:14:35 - Previously run:               3
+2023-10-30 17:14:35 - Filtered out:                 0
+2023-10-30 17:14:35 - -------------------------------
+2023-10-30 17:14:35 - Total change sets:            3
+2023-10-30 17:14:35 - Update summary generated
+2023-10-30 17:14:35 - Successfully released change log lock
+2023-10-30 17:14:35 - Command execution complete
+2023-10-30 17:14:35 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-30 17:14:36 - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-10-30 17:14:36 - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-10-30 17:14:36 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-10-30 17:14:37 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-30 17:14:37 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-30 17:14:38 - LiveReload server is running on port 35729
+2023-10-30 17:14:38 - Started TelegramBotForMSocialApplication in 6.011 seconds (JVM running for 7.852)
+2023-10-30 17:14:51 - SQL Error: 0, SQLState: 22001
+2023-10-30 17:14:51 - ERROR: value too long for type character varying(4096)
+2023-10-30 17:14:51 - could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement
+org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:280)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:233)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:551)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:243)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:241)
+	at jdk.proxy4/jdk.proxy4.$Proxy112.save(Unknown Source)
+	at com.dob.telegrambotformsocial.service.impl.MessageServiceImpl.saveMessage(MessageService.java:28)
+	at com.dob.telegrambotformsocial.bot.MSBot.onUpdateReceived(MSBot.java:50)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.telegram.telegrambots.meta.generics.LongPollingBot.onUpdatesReceived(LongPollingBot.java:27)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$HandlerThread.run(DefaultBotSession.java:312)
+Caused by: org.hibernate.exception.DataException: could not execute statement
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:115)
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:37)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
+	at org.hibernate.dialect.identity.GetGeneratedKeysDelegate.executeAndExtract(GetGeneratedKeysDelegate.java:58)
+	at org.hibernate.id.insert.AbstractReturningDelegate.performInsert(AbstractReturningDelegate.java:43)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3279)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3914)
+	at org.hibernate.action.internal.EntityIdentityInsertAction.execute(EntityIdentityInsertAction.java:84)
+	at org.hibernate.engine.spi.ActionQueue.execute(ActionQueue.java:645)
+	at org.hibernate.engine.spi.ActionQueue.addResolvedEntityInsertAction(ActionQueue.java:282)
+	at org.hibernate.engine.spi.ActionQueue.addInsertAction(ActionQueue.java:263)
+	at org.hibernate.engine.spi.ActionQueue.addAction(ActionQueue.java:317)
+	at org.hibernate.event.internal.AbstractSaveEventListener.addInsertAction(AbstractSaveEventListener.java:329)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSaveOrReplicate(AbstractSaveEventListener.java:286)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:192)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:122)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:185)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:128)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:756)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:742)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:315)
+	at jdk.proxy4/jdk.proxy4.$Proxy105.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:666)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:530)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:286)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:640)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:76)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	... 12 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: value too long for type character varying(4096)
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:167)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:135)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	... 55 common frames omitted
+2023-10-30 17:16:24 - Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:489)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:483)
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70)
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1461)
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1066)
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137)
+	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153)
+	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138)
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259)
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163)
+	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157)
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273)
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.getUpdatesFromServer(DefaultBotSession.java:249)
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.run(DefaultBotSession.java:188)
+2023-10-30 17:16:30 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-30 17:16:30 - HikariPool-1 - Shutdown initiated...
+2023-10-30 17:16:30 - HikariPool-1 - Shutdown completed.
+2023-11-09 16:30:32 - Starting TelegramBotForMSocialApplication using Java 21 on DESKTOP-UISI2UT with PID 9716 (C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes started by eddie in C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial)
+2023-11-09 16:30:32 - Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-09 16:30:32 - No active profile set, falling back to 1 default profile: "default"
+2023-11-09 16:30:32 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-09 16:30:33 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-09 16:30:33 - Finished Spring Data repository scanning in 72 ms. Found 3 JPA repository interfaces.
+2023-11-09 16:30:33 - HikariPool-1 - Starting...
+2023-11-09 16:30:33 - HikariPool-1 - Start completed.
+2023-11-09 16:30:34 - Set default schema name to public
+2023-11-09 16:30:34 - Failed to perform a method call for SnakeYaml because the version of SnakeYaml being used is too old. Consider upgrading to a SnakeYaml version equal to or newer than 1.32, by downloading and installing a newer version of Liquibase (which includes a newer version of SnakeYaml). Loading particularly large JSON and YAML documents (like snapshots) in Liquibase may fail if SnakeYaml is not upgraded.
+2023-11-09 16:30:34 - Reading from public.databasechangelog
+2023-11-09 16:30:34 - Reading from public.databasechangelog
+2023-11-09 16:30:34 - UPDATE SUMMARY
+2023-11-09 16:30:34 - Run:                          0
+2023-11-09 16:30:34 - Previously run:               3
+2023-11-09 16:30:34 - Filtered out:                 0
+2023-11-09 16:30:34 - -------------------------------
+2023-11-09 16:30:34 - Total change sets:            3
+2023-11-09 16:30:34 - Update summary generated
+2023-11-09 16:30:34 - Successfully released change log lock
+2023-11-09 16:30:34 - Command execution complete
+2023-11-09 16:30:34 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-09 16:30:34 - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-09 16:30:35 - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-09 16:30:35 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-11-09 16:30:36 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-09 16:30:36 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:30:36 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'MSBot' defined in file [C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes\com\dob\telegrambotformsocial\bot\MSBot.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'messageServiceImpl' defined in file [C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes\com\dob\telegrambotformsocial\service\impl\MessageServiceImpl.class]: Initialization of bean failed; nested exception is java.lang.IllegalStateException: Encountered invalid @Scheduled method 'deleteAndSaveDomains': Cron expression must consist of 6 fields (found 7 in "0/1 0/1 * 1/1 * ? *")
+2023-11-09 16:30:36 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:30:36 - HikariPool-1 - Shutdown initiated...
+2023-11-09 16:30:36 - HikariPool-1 - Shutdown completed.
+2023-11-09 16:30:36 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-11-09 16:30:36 - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'MSBot' defined in file [C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes\com\dob\telegrambotformsocial\bot\MSBot.class]: Unsatisfied dependency expressed through constructor parameter 2; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'messageServiceImpl' defined in file [C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes\com\dob\telegrambotformsocial\service\impl\MessageServiceImpl.class]: Initialization of bean failed; nested exception is java.lang.IllegalStateException: Encountered invalid @Scheduled method 'deleteAndSaveDomains': Cron expression must consist of 6 fields (found 7 in "0/1 0/1 * 1/1 * ? *")
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:801)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:224)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:921)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.dob.telegrambotformsocial.TelegramBotForMSocialApplication.main(TelegramBotForMSocialApplication.java:15)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'messageServiceImpl' defined in file [C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes\com\dob\telegrambotformsocial\service\impl\MessageServiceImpl.class]: Initialization of bean failed; nested exception is java.lang.IllegalStateException: Encountered invalid @Scheduled method 'deleteAndSaveDomains': Cron expression must consist of 6 fields (found 7 in "0/1 0/1 * 1/1 * ? *")
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:911)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
+	... 21 common frames omitted
+Caused by: java.lang.IllegalStateException: Encountered invalid @Scheduled method 'deleteAndSaveDomains': Cron expression must consist of 6 fields (found 7 in "0/1 0/1 * 1/1 * ? *")
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.processScheduled(ScheduledAnnotationBeanPostProcessor.java:518)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$null$1(ScheduledAnnotationBeanPostProcessor.java:380)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.lambda$postProcessAfterInitialization$2(ScheduledAnnotationBeanPostProcessor.java:380)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor.postProcessAfterInitialization(ScheduledAnnotationBeanPostProcessor.java:379)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:455)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 31 common frames omitted
+2023-11-09 16:32:00 - Starting TelegramBotForMSocialApplication using Java 21 on DESKTOP-UISI2UT with PID 11604 (C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes started by eddie in C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial)
+2023-11-09 16:32:00 - Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-09 16:32:00 - No active profile set, falling back to 1 default profile: "default"
+2023-11-09 16:32:00 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-09 16:32:00 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-09 16:32:00 - Finished Spring Data repository scanning in 67 ms. Found 3 JPA repository interfaces.
+2023-11-09 16:32:01 - HikariPool-1 - Starting...
+2023-11-09 16:32:01 - HikariPool-1 - Start completed.
+2023-11-09 16:32:01 - Set default schema name to public
+2023-11-09 16:32:02 - Failed to perform a method call for SnakeYaml because the version of SnakeYaml being used is too old. Consider upgrading to a SnakeYaml version equal to or newer than 1.32, by downloading and installing a newer version of Liquibase (which includes a newer version of SnakeYaml). Loading particularly large JSON and YAML documents (like snapshots) in Liquibase may fail if SnakeYaml is not upgraded.
+2023-11-09 16:32:02 - Reading from public.databasechangelog
+2023-11-09 16:32:02 - Reading from public.databasechangelog
+2023-11-09 16:32:02 - UPDATE SUMMARY
+2023-11-09 16:32:02 - Run:                          0
+2023-11-09 16:32:02 - Previously run:               3
+2023-11-09 16:32:02 - Filtered out:                 0
+2023-11-09 16:32:02 - -------------------------------
+2023-11-09 16:32:02 - Total change sets:            3
+2023-11-09 16:32:02 - Update summary generated
+2023-11-09 16:32:02 - Successfully released change log lock
+2023-11-09 16:32:02 - Command execution complete
+2023-11-09 16:32:02 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-09 16:32:02 - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-09 16:32:02 - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-09 16:32:03 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-11-09 16:32:04 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-09 16:32:04 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:32:05 - LiveReload server is running on port 35729
+2023-11-09 16:32:05 - Started TelegramBotForMSocialApplication in 6.001 seconds (JVM running for 7.409)
+2023-11-09 16:35:31 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:35:31 - HikariPool-1 - Shutdown initiated...
+2023-11-09 16:35:31 - HikariPool-1 - Shutdown completed.
+2023-11-09 16:38:58 - Starting TelegramBotForMSocialApplication using Java 21 on DESKTOP-UISI2UT with PID 9112 (C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial\target\classes started by eddie in C:\Users\eddie\IdeaProjects\tg\Test-Task-Telegram-Bot-For-MSocial)
+2023-11-09 16:38:58 - Running with Spring Boot v2.7.17, Spring v5.3.30
+2023-11-09 16:38:58 - No active profile set, falling back to 1 default profile: "default"
+2023-11-09 16:38:58 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-09 16:38:59 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-09 16:38:59 - Finished Spring Data repository scanning in 71 ms. Found 3 JPA repository interfaces.
+2023-11-09 16:38:59 - HikariPool-1 - Starting...
+2023-11-09 16:38:59 - HikariPool-1 - Start completed.
+2023-11-09 16:39:00 - Set default schema name to public
+2023-11-09 16:39:00 - Failed to perform a method call for SnakeYaml because the version of SnakeYaml being used is too old. Consider upgrading to a SnakeYaml version equal to or newer than 1.32, by downloading and installing a newer version of Liquibase (which includes a newer version of SnakeYaml). Loading particularly large JSON and YAML documents (like snapshots) in Liquibase may fail if SnakeYaml is not upgraded.
+2023-11-09 16:39:00 - Reading from public.databasechangelog
+2023-11-09 16:39:00 - Reading from public.databasechangelog
+2023-11-09 16:39:00 - UPDATE SUMMARY
+2023-11-09 16:39:00 - Run:                          0
+2023-11-09 16:39:00 - Previously run:               3
+2023-11-09 16:39:00 - Filtered out:                 0
+2023-11-09 16:39:00 - -------------------------------
+2023-11-09 16:39:00 - Total change sets:            3
+2023-11-09 16:39:00 - Update summary generated
+2023-11-09 16:39:00 - Successfully released change log lock
+2023-11-09 16:39:00 - Command execution complete
+2023-11-09 16:39:00 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-09 16:39:01 - HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-09 16:39:01 - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-09 16:39:01 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-11-09 16:39:02 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-09 16:39:02 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:39:03 - LiveReload server is running on port 35729
+2023-11-09 16:39:03 - Started TelegramBotForMSocialApplication in 5.627 seconds (JVM running for 6.926)
+2023-11-09 16:41:31 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-09 16:41:31 - HikariPool-1 - Shutdown initiated...
+2023-11-09 16:41:31 - HikariPool-1 - Shutdown completed.
