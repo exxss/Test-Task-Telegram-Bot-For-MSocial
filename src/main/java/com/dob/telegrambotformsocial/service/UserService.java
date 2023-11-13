@@ -1,45 +1,13 @@
 package com.dob.telegrambotformsocial.service;
 
-
-
 import com.dob.telegrambotformsocial.entity.User;
-import com.dob.telegrambotformsocial.repository.UserRepository;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
-public class UserService {
-    private final UserRepository userRepository;
+public interface UserService {
+    User findOrSaveUser(Update update);
+    void updateLastMessageAt(Long id);
+    List<Long> telegramUsersIds();
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public User findOrSaveUser(Update update) {
-        var telegramUser = update.getMessage().getFrom();
-        var appUserOpt = userRepository.findByTelegramUserId(telegramUser.getId());
-        if (appUserOpt.isEmpty()) {
-            User transientUser = User.builder()
-                    .telegramUserId(telegramUser.getId())
-                    .username(telegramUser.getUserName())
-                    .lastMessageAt(LocalDateTime.now())
-                    .build();
-            return userRepository.save(transientUser);
-        }
-        return appUserOpt.get();
-    }
-
-    public void updateLastMessageAt(Long id) {
-        User user = userRepository.findUserByTelegramUserId(id);
-        user.setLastMessageAt(LocalDateTime.now());
-        userRepository.save(user);
-    }
-
-    public List<Long> telegramUsersIds(){
-        return userRepository.findAllTelegramUserIds();
-    }
 }

@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     Optional<User> findByTelegramUserId(Long id);
-    User findUserByTelegramUserId(Long id);
+
     @Query(nativeQuery = true,
             value = "SELECT telegram_user_id FROM users")
     List<Long> findAllTelegramUserIds();

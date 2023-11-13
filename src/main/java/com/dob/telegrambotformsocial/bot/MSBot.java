@@ -1,10 +1,15 @@
 package com.dob.telegrambotformsocial.bot;
 
 
+import com.dob.telegrambotformsocial.repository.UserRepository;
 import com.dob.telegrambotformsocial.service.DailyDomainsService;
 import com.dob.telegrambotformsocial.service.MessageService;
 import com.dob.telegrambotformsocial.service.UserService;
+import com.dob.telegrambotformsocial.service.impl.MessageServiceImpl;
+import com.dob.telegrambotformsocial.service.impl.DailyDomainsServiceImpl;
+import com.dob.telegrambotformsocial.service.impl.UserServiceImpl;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -33,7 +38,7 @@ public class MSBot extends TelegramLongPollingBot {
 
 
 
-    public MSBot(@Value("${bot.token}") String token, UserService userService, MessageService messageService, DailyDomainsService dailyDomainsService) {
+    public MSBot(@Value("${bot.token}") String token, UserServiceImpl userService, MessageServiceImpl messageService, DailyDomainsServiceImpl dailyDomainsService) {
         super(token);
         this.userService = userService;
         this.messageService = messageService;
@@ -61,6 +66,17 @@ public class MSBot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return username;
     }
+
+    @Scheduled(cron = "0 1 8 * * ?")
+    private void sendCountDomains(){
+        System.out.println("send");
+        String message = date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.";
+        List<Long> userIds = userService.telegramUsersIds();
+        for (Long userId : userIds) {
+            prepareAndSendMessage(userId,message);
+            messageService.saveMessage(message,"", userId);
+        }
+    }
     private void prepareAndSendMessage(long chatId, String textToSend){
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
@@ -68,27 +84,7 @@ public class MSBot extends TelegramLongPollingBot {
         executeMessage(message);
 
     }
-    @Scheduled(cron = "1 0 8 * * ?")
-    private void deleteDomains(){
-        System.out.println("delete");
-        dailyDomainsService.deleteDomains();
-    }
 
-    @Scheduled(cron = "2 0 8 * * ?")
-    private void saveDomains(){
-        System.out.println("save");
-        dailyDomainsService.saveDomains();
-    }
-    @Scheduled(cron = "3 0 8 * * ?")
-    private void sendCountDomains(){
-        String message = date() + ". Собрано " + dailyDomainsService.countDomains() + " доменов.";
-        System.out.println("send");
-        List<Long> userIds = userService.telegramUsersIds();
-        for (Long userId : userIds) {
-          prepareAndSendMessage(userId,message);
-          messageService.saveMessage(message,"",userId);
-        }
-    }
     private void executeMessage(SendMessage message){
         try {
             execute(message);
@@ -96,7 +92,6 @@ public class MSBot extends TelegramLongPollingBot {
             log.error(e.getMessage());
         }
     }
-
     private String date(){
         LocalDateTime ldt = LocalDateTime.now().plusDays(1);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
